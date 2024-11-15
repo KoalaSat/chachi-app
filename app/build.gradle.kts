@@ -1,8 +1,8 @@
+import java.io.FileInputStream
+import java.util.Properties
 import org.gradle.api.JavaVersion
 import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.io.FileInputStream
-import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)

@@ -1,0 +1,9 @@
+nestr:
+  android:
+    identifier: com.koalasat.nestr
+    name: Nestr
+    description: Nostr pull notifications on Android. Receive live notifications for your nostr events and allow other apps to receive and interact with them.
+    repository: https://github.com/koalasat/nestr
+    license: MIT
+    artifacts:
+      - nestr-universal-v%v-alpha.apk
