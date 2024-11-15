@@ -20,7 +20,7 @@
     </a>
 </div>
 
-- Discussion: https://chachi.chat/groups.0xchat.com/7SbVsYrEQMtZAMIn
+- Discussion: https://chachi.chat/groups.0xchat.com/cUbWQToHUMO83DUC
 
 # Getting Started
 
