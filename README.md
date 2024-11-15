@@ -6,7 +6,7 @@
  Securely browse nostr web-apps on Android
 
 <div align="center">
-    <img src="https://github.com/KoalaSat/nestr/blob/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="Description of Image" />
+    <img src="./app/src/main/res/playstore-icon.png" alt="Description of Image"  height="256"/>
 </div>
 <div align="center">
     <a href="https://github.com/ImranR98/Obtainium" target="_blank">
