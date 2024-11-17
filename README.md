@@ -1,4 +1,4 @@
-# Nestr
+# Nido
 [![GitHub downloads](https://img.shields.io/github/downloads/KoalaSat/nestr/total?label=Downloads&labelColor=27303D&color=0D1117&logo=github&logoColor=FFFFFF&style=flat)](https://github.com/KoalaSat/nestr/releases)
 [![release](https://img.shields.io/github/v/release/KoalaSat/nestr)](https://github.com/KoalaSat/nostros/nestr)
 [![MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/KoalaSat/nestr/blob/main/LICENSE)
