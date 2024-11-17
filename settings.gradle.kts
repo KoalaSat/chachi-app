@@ -16,6 +16,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Nestr"
+rootProject.name = "Nido"
 include(":app")
  

@@ -1,4 +1,4 @@
-package com.koalasat.nestr.models
+package com.koalasat.nido.models
 
 import android.content.Context
 import android.content.SharedPreferences

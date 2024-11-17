@@ -1,9 +1,9 @@
-nestr:
+nido:
   android:
-    identifier: com.koalasat.nestr
-    name: Nestr
+    identifier: com.koalasat.nido
+    name: Nido
     description: Nostr pull notifications on Android. Receive live notifications for your nostr events and allow other apps to receive and interact with them.
-    repository: https://github.com/koalasat/nestr
+    repository: https://github.com/koalasat/nido
     license: MIT
     artifacts:
-      - nestr-universal-v%v-alpha.apk
+      - nido-universal-v%v-alpha.apk

@@ -13,11 +13,11 @@ plugins {
 }
 
 android {
-    namespace = "com.koalasat.nestr"
+    namespace = "com.koalasat.nido"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.koalasat.nestr"
+        applicationId = "com.koalasat.nido"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
