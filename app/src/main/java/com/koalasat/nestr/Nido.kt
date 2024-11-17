@@ -1,8 +1,8 @@
-package com.koalasat.nestr
+package com.koalasat.nido
 
 import android.app.Application
 import android.content.ContentResolver
-import com.koalasat.nestr.models.EncryptedStorage
+import com.koalasat.nido.models.EncryptedStorage
 import com.vitorpamplona.quartz.encoders.Nip19Bech32
 import com.vitorpamplona.quartz.encoders.Nip19Bech32.uriToRoute
 import kotlinx.coroutines.CoroutineScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
-class Nestr : Application() {
+class Nido : Application() {
     private val applicationIOScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     override fun onCreate() {
@@ -39,11 +39,11 @@ class Nestr : Application() {
 
     companion object {
         @Volatile
-        private var instance: Nestr? = null
+        private var instance: Nido? = null
 
-        fun getInstance(): Nestr =
+        fun getInstance(): Nido =
             instance ?: synchronized(this) {
-                instance ?: Nestr().also { instance = it }
+                instance ?: Nido().also { instance = it }
             }
     }
 }

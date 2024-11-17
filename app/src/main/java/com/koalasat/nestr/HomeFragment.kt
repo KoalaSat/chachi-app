@@ -1,4 +1,4 @@
-package com.koalasat.nestr
+package com.koalasat.nido
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.koalasat.nestr.databinding.FragmentHomeBinding
-import com.koalasat.nestr.models.ExternalSigner
+import com.koalasat.nido.databinding.FragmentHomeBinding
+import com.koalasat.nido.models.ExternalSigner
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

@@ -1,4 +1,4 @@
-package com.koalasat.nestr
+package com.koalasat.nido
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,8 +10,8 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
-import com.koalasat.nestr.databinding.FragmentWebAppBinding
-import com.koalasat.nestr.interfaces.ExternalSignerInterface
+import com.koalasat.nido.databinding.FragmentWebAppBinding
+import com.koalasat.nido.interfaces.ExternalSignerInterface
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -50,7 +50,7 @@ class WebAppFragment : Fragment() {
         val cookieManager = CookieManager.getInstance()
         cookieManager.setAcceptCookie(true)
 
-        webView.addJavascriptInterface(ExternalSignerInterface(webView), "nestr")
+        webView.addJavascriptInterface(ExternalSignerInterface(webView), "nido")
         webView.webViewClient =
             object : WebViewClient() {
                 override fun onPageFinished(
@@ -77,7 +77,7 @@ class WebAppFragment : Fragment() {
             """
             window.nostr = {
                 getPublicKey: function() {
-                    return nestr.getPublicKey();
+                    return nido.getPublicKey();
                 },
                 signEvent: function signEvent(event) {
                     return new Promise((resolve, reject) => {
@@ -89,7 +89,7 @@ class WebAppFragment : Fragment() {
                         };
                         console.log(JSON.stringify(event));
                         console.log(callbackName);
-                        nestr.signEvent(JSON.stringify(event), callbackName);
+                        nido.signEvent(JSON.stringify(event), callbackName);
                     });
                 }
             };

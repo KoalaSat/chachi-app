@@ -1,18 +1,18 @@
-package com.koalasat.nestr.interfaces
+package com.koalasat.nido.interfaces
 
 import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import com.fasterxml.jackson.core.JsonParseException
-import com.koalasat.nestr.Nestr
-import com.koalasat.nestr.models.ExternalSigner
+import com.koalasat.nido.Nido
+import com.koalasat.nido.models.ExternalSigner
 import com.vitorpamplona.quartz.events.Event
 import org.json.JSONObject
 
 class ExternalSignerInterface(private var webView: WebView) {
     @JavascriptInterface
     fun getPublicKey(): String {
-        return Nestr.getInstance().getHexKey()
+        return Nido.getInstance().getHexKey()
     }
 
     @JavascriptInterface
@@ -20,7 +20,7 @@ class ExternalSignerInterface(private var webView: WebView) {
         event: String,
         callback: String,
     ) {
-        Log.e("Nestr", "Unsigned JSON $event")
+        Log.e("Nido", "Unsigned JSON $event")
         try {
             val eventObj = JSONObject(event)
             val jsonTags = eventObj.getJSONArray("tags")
@@ -41,7 +41,7 @@ class ExternalSignerInterface(private var webView: WebView) {
                     content = eventObj.getString("content"),
                     sig = "",
                 )
-            Log.e("Nestr", "Unsigned Event ${unsignedEvent.toJson()}")
+            Log.e("Nido", "Unsigned Event ${unsignedEvent.toJson()}")
             ExternalSigner.sign(unsignedEvent) { result ->
                 val signedEvent =
                     Event(
@@ -53,11 +53,11 @@ class ExternalSignerInterface(private var webView: WebView) {
                         content = unsignedEvent.content(),
                         sig = result,
                     )
-                Log.e("Nestr", "Signed Event ${signedEvent.toJson()}")
+                Log.e("Nido", "Signed Event ${signedEvent.toJson()}")
                 sendResult(signedEvent.toJson(), callback)
             }
         } catch (e: JsonParseException) {
-            Log.e("Nestr", "Signed Event parse error: ${e.message}")
+            Log.e("Nido", "Signed Event parse error: ${e.message}")
             sendResult("", callback)
         }
     }

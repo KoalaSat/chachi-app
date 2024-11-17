@@ -1,4 +1,4 @@
-package com.koalasat.nestr.models
+package com.koalasat.nido.models
 
 import android.app.Activity
 import android.content.Intent
@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.koalasat.nestr.Nestr
-import com.koalasat.nestr.R
+import com.koalasat.nido.Nido
+import com.koalasat.nido.R
 import com.vitorpamplona.quartz.encoders.toHexKey
 import com.vitorpamplona.quartz.events.Event
 import com.vitorpamplona.quartz.signers.ExternalSignerLauncher
@@ -25,7 +25,7 @@ object ExternalSigner {
         nostrSignerLauncher =
             activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode != Activity.RESULT_OK) {
-                    Log.e("Nestr", "ExternalSigner result error: ${result.resultCode}")
+                    Log.e("Nido", "ExternalSigner result error: ${result.resultCode}")
                     Toast.makeText(activity, activity.getString(R.string.amber_not_found), Toast.LENGTH_SHORT).show()
                 } else {
                     result.data?.let { externalSignerLauncher.newResult(it) }
@@ -59,7 +59,7 @@ object ExternalSigner {
         challenge: String,
         onReady: (Event) -> Unit,
     ) {
-        val pubKey = Nestr.getInstance().getHexKey()
+        val pubKey = Nido.getInstance().getHexKey()
         val createdAt = TimeUtils.now()
         val kind = 22242
         val content = ""
@@ -119,10 +119,10 @@ object ExternalSigner {
                     nostrSignerLauncher.launch(it)
                 } catch (e: Exception) {
                     if (e is CancellationException) throw e
-                    Log.e("Nestr", "Error opening Signer app", e)
+                    Log.e("Nido", "Error opening Signer app", e)
                 }
             },
-            contentResolver = { Nestr.getInstance().contentResolverFn() },
+            contentResolver = { Nido.getInstance().contentResolverFn() },
         )
     }
 }

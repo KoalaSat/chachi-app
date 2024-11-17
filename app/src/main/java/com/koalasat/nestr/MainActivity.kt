@@ -1,4 +1,4 @@
-package com.koalasat.nestr
+package com.koalasat.nido
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,9 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.koalasat.nestr.databinding.ActivityMainBinding
-import com.koalasat.nestr.models.EncryptedStorage
-import com.koalasat.nestr.models.ExternalSigner
+import com.koalasat.nido.databinding.ActivityMainBinding
+import com.koalasat.nido.models.EncryptedStorage
+import com.koalasat.nido.models.ExternalSigner
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
