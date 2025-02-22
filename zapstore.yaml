@@ -1,9 +1,9 @@
-nido:
+chachi:
   android:
-    identifier: com.koalasat.nido
-    name: Nido
+    identifier: com.koalasat.chachi
+    name: Chachi
     description: Nostr pull notifications on Android. Receive live notifications for your nostr events and allow other apps to receive and interact with them.
-    repository: https://github.com/koalasat/nido
+    repository: https://github.com/koalasat/chachi
     license: MIT
     artifacts:
-      - nido-universal-v%v-alpha.apk
+      - chachi-universal-v%v-alpha.apk

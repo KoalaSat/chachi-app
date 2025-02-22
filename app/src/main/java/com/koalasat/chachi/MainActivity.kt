@@ -1,4 +1,4 @@
-package com.koalasat.nido
+package com.koalasat.chachi
 
 import android.os.Bundle
 import android.view.Menu
@@ -6,11 +6,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.koalasat.nido.databinding.ActivityMainBinding
-import com.koalasat.nido.models.EncryptedStorage
-import com.koalasat.nido.models.ExternalSigner
+import com.koalasat.chachi.databinding.ActivityMainBinding
+import com.koalasat.chachi.models.EncryptedStorage
+import com.koalasat.chachi.models.ExternalSigner
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -24,11 +22,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -43,18 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration) ||
-            super.onSupportNavigateUp()
-    }
-
     fun init() {
         EncryptedStorage.init(this)
         ExternalSigner.init(this)
-    }
-
-    fun setActionBarTitle(title: String) {
-        binding.toolbar.setTitle(title)
+        ExternalSigner.savePubKey()
     }
 }

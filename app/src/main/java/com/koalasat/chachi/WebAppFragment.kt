@@ -1,4 +1,4 @@
-package com.koalasat.nido
+package com.koalasat.chachi
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,9 +9,10 @@ import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import com.koalasat.nido.databinding.FragmentWebAppBinding
-import com.koalasat.nido.interfaces.ExternalSignerInterface
+import com.koalasat.chachi.databinding.FragmentWebAppBinding
+import com.koalasat.chachi.interfaces.ExternalSignerInterface
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -50,7 +51,7 @@ class WebAppFragment : Fragment() {
         val cookieManager = CookieManager.getInstance()
         cookieManager.setAcceptCookie(true)
 
-        webView.addJavascriptInterface(ExternalSignerInterface(webView), "nido")
+        webView.addJavascriptInterface(ExternalSignerInterface(webView), "chachi")
         webView.webViewClient =
             object : WebViewClient() {
                 override fun onPageFinished(
@@ -61,10 +62,23 @@ class WebAppFragment : Fragment() {
                     injectNIP07()
                 }
             }
-        arguments?.let {
-            val url = it.getString("url")
-            webView.loadUrl(url.toString())
-        }
+        webView.loadUrl("https://chachi.chat")
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (webView.canGoBack()) {
+                        webView.goBack()
+                    } else {
+                        if (isEnabled) {
+                            isEnabled = false
+                            requireActivity().onBackPressed()
+                        }
+                    }
+                }
+            },
+        )
     }
 
     override fun onDestroyView() {
@@ -77,7 +91,7 @@ class WebAppFragment : Fragment() {
             """
             window.nostr = {
                 getPublicKey: function() {
-                    return nido.getPublicKey();
+                    return chachi.getPublicKey();
                 },
                 signEvent: function signEvent(event) {
                     return new Promise((resolve, reject) => {
@@ -89,7 +103,7 @@ class WebAppFragment : Fragment() {
                         };
                         console.log(JSON.stringify(event));
                         console.log(callbackName);
-                        nido.signEvent(JSON.stringify(event), callbackName);
+                        chachi.signEvent(JSON.stringify(event), callbackName);
                     });
                 }
             };

@@ -1,18 +1,19 @@
-package com.koalasat.nido.interfaces
+package com.koalasat.chachi.interfaces
 
 import android.util.Log
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import com.fasterxml.jackson.core.JsonParseException
-import com.koalasat.nido.Nido
-import com.koalasat.nido.models.ExternalSigner
+import com.koalasat.chachi.Chachi
+import com.koalasat.chachi.models.ExternalSigner
 import com.vitorpamplona.quartz.events.Event
 import org.json.JSONObject
 
 class ExternalSignerInterface(private var webView: WebView) {
     @JavascriptInterface
     fun getPublicKey(): String {
-        return Nido.getInstance().getHexKey()
+        Log.e("Chachi", "getPublicKey")
+        return Chachi.getInstance().getHexKey()
     }
 
     @JavascriptInterface
@@ -20,7 +21,7 @@ class ExternalSignerInterface(private var webView: WebView) {
         event: String,
         callback: String,
     ) {
-        Log.e("Nido", "Unsigned JSON $event")
+        Log.e("Chachi", "Unsigned JSON $event")
         try {
             val eventObj = JSONObject(event)
             val jsonTags = eventObj.getJSONArray("tags")
@@ -41,7 +42,7 @@ class ExternalSignerInterface(private var webView: WebView) {
                     content = eventObj.getString("content"),
                     sig = "",
                 )
-            Log.e("Nido", "Unsigned Event ${unsignedEvent.toJson()}")
+            Log.e("Chachi", "Unsigned Event ${unsignedEvent.toJson()}")
             ExternalSigner.sign(unsignedEvent) { result ->
                 val signedEvent =
                     Event(
@@ -53,11 +54,11 @@ class ExternalSignerInterface(private var webView: WebView) {
                         content = unsignedEvent.content(),
                         sig = result,
                     )
-                Log.e("Nido", "Signed Event ${signedEvent.toJson()}")
+                Log.e("Chachi", "Signed Event ${signedEvent.toJson()}")
                 sendResult(signedEvent.toJson(), callback)
             }
         } catch (e: JsonParseException) {
-            Log.e("Nido", "Signed Event parse error: ${e.message}")
+            Log.e("Chachi", "Signed Event parse error: ${e.message}")
             sendResult("", callback)
         }
     }
@@ -66,6 +67,7 @@ class ExternalSignerInterface(private var webView: WebView) {
         result: String,
         callback: String,
     ) {
+        Log.e("Chachi", "Sending to JS")
         val jsCallback = "javascript:$callback($result)"
         webView.evaluateJavascript(jsCallback, null)
     }
