@@ -13,11 +13,11 @@ plugins {
 }
 
 android {
-    namespace = "com.koalasat.nido"
+    namespace = "com.koalasat.chachi"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.koalasat.nido"
+        applicationId = "com.koalasat.chachi"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

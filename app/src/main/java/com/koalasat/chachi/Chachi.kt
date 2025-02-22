@@ -1,8 +1,8 @@
-package com.koalasat.nido
+package com.koalasat.chachi
 
 import android.app.Application
 import android.content.ContentResolver
-import com.koalasat.nido.models.EncryptedStorage
+import com.koalasat.chachi.models.EncryptedStorage
 import com.vitorpamplona.quartz.encoders.Nip19Bech32
 import com.vitorpamplona.quartz.encoders.Nip19Bech32.uriToRoute
 import kotlinx.coroutines.CoroutineScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
-class Nido : Application() {
+class Chachi : Application() {
     private val applicationIOScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     override fun onCreate() {
@@ -39,11 +39,11 @@ class Nido : Application() {
 
     companion object {
         @Volatile
-        private var instance: Nido? = null
+        private var instance: Chachi? = null
 
-        fun getInstance(): Nido =
+        fun getInstance(): Chachi =
             instance ?: synchronized(this) {
-                instance ?: Nido().also { instance = it }
+                instance ?: Chachi().also { instance = it }
             }
     }
 }

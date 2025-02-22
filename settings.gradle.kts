@@ -16,6 +16,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Nido"
+rootProject.name = "Chachi"
 include(":app")
- 
