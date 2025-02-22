@@ -3,7 +3,7 @@ chachi:
     identifier: com.koalasat.chachi
     name: Chachi
     description: Nostr pull notifications on Android. Receive live notifications for your nostr events and allow other apps to receive and interact with them.
-    repository: https://github.com/koalasat/chachi
+    repository: https://github.com/koalasat/chachi-app
     license: MIT
     artifacts:
       - chachi-universal-v%v-alpha.apk
